@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Links</title>
+
+<style>
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    position: relative;
+}
+
+/* ===== GRID PUTIH TEBAL ===== */
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(to right, rgba(255,255,255,0.7) 3px, transparent 3px),
+        linear-gradient(to bottom, rgba(255,255,255,0.7) 3px, transparent 3px);
+    background-size: 100px 100px;
+    animation: moveGrid 1s linear infinite;
+    z-index: 0;
+    will-change: background-position;
+}
+
+@keyframes moveGrid {
+    0% { background-position: 0 0; }
+    100% { background-position: -100px 0; }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(255,0,0,0.5);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid red;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* ===== NAMA & BIO ===== */
+.name {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+.bio {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* ===== LINK BUTTON FULL-WIDTH ===== */
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: linear-gradient(90deg, red, darkred);
+    color: white;
+    padding: 10px 0;      /* vertical padding */
+    margin: 8px 0;
+    border-radius: 12px;
+    transition: 0.3s;
+    font-weight: bold;
+    min-height: 60px;
+    width: 100%;           /* tombol panjang full container */
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* ===== LOGO ===== */
+.link img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;     /* sudut logo membulat */
+    margin-bottom: 6px;
+}
+
+/* ===== HOVER TOMBOL GLOW ===== */
+.link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px red;
+}
+
+/* ===== FULLSCREEN ENTER OVERLAY ===== */
+#enterOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    color: white;
+    font-size: 24px;
+}
+
+#enterOverlay button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background: red;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    color: white;
+    transition: 0.3s;
+    width: auto;
+    min-width: 120px;
+}
+
+#enterOverlay button:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<!-- GRID PUTIH -->
+<div class="grid"></div>
+
+<!-- FULLSCREEN ENTER OVERLAY -->
+<div id="enterOverlay">
+    <div>Welcome to Linkmue | Web by Keyaru</div>
+    <button id="enterBtn">Enter</button>
+</div>
+
+<!-- CONTAINER -->
+<div class="container">
+
+    <!-- FOTO -->
+    <img src="Profil.jpeg" class="avatar">
+
+    <!-- NAMA -->
+    <div class="name">Keya!</div>
+
+    <!-- DESKRIPSI -->
+    <div class="bio">Sound System Creator | Roblox Developer</div>
+
+    <!-- LINK CREDIT FULL-WIDTH -->
+    <a class="link" href="https://youtube.com" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube Logo">
+        YouTube | KyCore
+    </a>
+    <a class="link" href="https://discord.gg" target="_blank">
+        <img src="Discord.png" alt="Discord Logo">
+        Discord | LB Studios
+    </a>
+    <a class="link" href="https://tiktok.com" target="_blank">
+        <img src="Tiktok.png" alt="Roblox Logo">
+        TikTok | Keyaru
+    </a>
+    <a class="link" href="https://instagram.com" target="_blank">
+        <img src="SOB.png" alt="Instagram Logo">
+        Map Roblox | Sound On Bass
+    </a>
+   <a class="link" href="https://instagram.com" target="_blank">
+        <img src="LB Studios.jpeg" alt="Instagram Logo">
+        Roblox Community | LB Studios
+    </a>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgAudio" loop>
+    <source src="Dj-bintang.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+</audio>
+
+<script>
+const audio = document.getElementById('bgAudio');
+const overlay = document.getElementById('enterOverlay');
+const btn = document.getElementById('enterBtn');
+
+btn.addEventListener('click', () => {
+    overlay.style.display = 'none';   // hilangkan overlay
+    audio.volume = 0.5;
+    audio.play();                      // mulai audio
+});
+</script>
+
+</body>
+</html>
